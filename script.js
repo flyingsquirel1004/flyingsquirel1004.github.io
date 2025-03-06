@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { name: "Robert Jenkins", text: "Montgomery County is growing, and our infrastructure must grow with it. Road expansion is a necessary investment." },
         { name: "Emily Wilson", text: "More efficient road networks mean less time stuck in traffic and more time spent with family." },
         { name: "Steve Walker", text: "Strategic road expansion will allow for better traffic flow and long-term economic benefits." },
-        { name: "Megan Brooks", text: "Improved roads mean safer travel conditions for all. It's time to invest in modern infrastructure." }
+        { name: "Megan Brooks", text: "Improved roads mean safer travel conditions for all. It's time to invest in modern infrastructure." },
         { name: "Michael Stevenson", text: "If we just add ONE MORE LANE, I guarantee traffic will disappear overnight. Trust me, bro." },
         { name: "Linda Carter", text: "I need to drive 0.3 miles to pick up a latte. The bike lanes are in my way. Pave over them now!" },
         { name: "Brian Mitchell", text: "Adding roads never increases traffic, bro. That’s just a myth. More lanes = more freedom!" },
