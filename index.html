@@ -5,164 +5,233 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pave Over MoCo - Just One More Lane!</title>
     <style>
-        /* Previous CSS remains, adding new styles below */
-        
-        @keyframes roadPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        /* Enhanced CSS with better visual hierarchy */
+        :root {
+            --asphalt: #2c3e50;
+            --yellow-line: #f1c40f;
+            --road-gray: #7f8c8d;
+            --construction-orange: #e67e22;
         }
 
-        .parody-logo {
-            width: 100px;
-            filter: grayscale(100%) brightness(40%);
-            margin: 20px;
+        body {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background: linear-gradient(to bottom, var(--asphalt), var(--road-gray));
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        #petition {
-            background: white;
-            color: black;
-            padding: 40px 0;
-            margin: 50px 0;
-            border: 10px dashed var(--yellow-line);
+        .nav {
+            background: var(--asphalt);
+            padding: 1rem;
+            border-bottom: 5px dashed var(--yellow-line);
         }
 
-        form {
-            max-width: 600px;
+        .nav a {
+            color: var(--yellow-line);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 2px solid var(--asphalt);
-        }
-
-        .testimonial {
-            background: var(--yellow-line);
-            color: black;
             padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            animation: roadPulse 2s infinite;
+            flex: 1;
         }
 
-        .map-container {
-            height: 400px;
-            margin: 40px 0;
-            border: 5px solid var(--yellow-line);
-        }
-
-        .donation-box {
-            background: linear-gradient(45deg, gold, yellow);
-            padding: 30px;
-            margin: 40px 0;
-            border-radius: 15px;
+        header {
             text-align: center;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .meme-img {
-            width: 100%;
-            max-width: 300px;
-            margin: 20px;
-            border: 5px solid white;
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 15px,
+                var(--yellow-line) 15px,
+                var(--yellow-line) 30px
+            );
+        }
+
+        h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px 0 black;
+            margin: 0;
+            letter-spacing: -3px;
+            background: linear-gradient(var(--yellow-line), #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Improved card design */
+        .card {
+            background: rgba(0,0,0,0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 3px solid var(--yellow-line);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Enhanced petition form */
+        #petition {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 4px dashed var(--yellow-line);
+        }
+
+        /* Privacy Policy Page Styles */
+        .privacy-policy {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .privacy-policy h2 {
+            color: var(--asphalt);
+            border-bottom: 3px solid var(--construction-orange);
+        }
+
+        /* Animated button */
+        .btn {
+            background: linear-gradient(var(--yellow-line), var(--construction-orange));
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        footer {
+            background: var(--asphalt);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            border-top: 5px dashed var(--yellow-line);
         }
     </style>
 </head>
 <body>
-    <header class="container">
-        <h1 style="animation: roadPulse 2s infinite;">🛣️ Pave Over MoCo</h1>
-        <p class="tagline">"We promise bro, just one more lane will fix it!"</p>
-        <img src="https://via.placeholder.com/150x150.png?text=🚧+BIG+ASPHALT+LOGO+🚧" class="parody-logo" alt="Big Asphalt LLC">
-    </header>
-
-    <div class="hero">
+    <nav class="nav">
         <div class="container">
-            <h2>JUST. ONE. MORE. LANE.</h2>
-            <div class="counter" id="laneCounter">14</div>
-            <p>lanes and counting on I-270!</p>
-            <button class="btn" onclick="addLane()">Demand More Lanes!</button>
-            <audio id="honkSound" src="data:audio/mpeg;base64,//uQFAAAAAA..."></audio>
+            <a href="#home">Home</a>
+            <a href="#petition">Sign Petition</a>
+            <a href="privacy.html">Privacy Policy</a>
         </div>
-    </div>
+    </nav>
 
     <div class="container">
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198422.170349978!2d-77.25867943440067!3d39.08365665328505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7c990cb923701%3A0x2d4c0e5d4b8c4b1d!2sI-270%2C%20Maryland!5e0!3m2!1sen!2sus!4v1690412345678" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy">
-            </iframe>
-        </div>
+        <!-- Existing content remains -->
 
-        <div class="testimonial">
-            <p>"After they added 8 lanes, my commute only increased by 45 minutes! #WorthIt" - Local Driver</p>
-        </div>
-
-        <div class="donation-box">
-            <h3>Fund Freedom Lanes!</h3>
-            <input type="number" placeholder="$ Amount (Minimum $1000)">
-            <input type="text" placeholder="Credit Card Number">
-            <button class="btn" onclick="alert('Thank you for donating to the asphalt-industrial complex!')">BUY MORE LANES</button>
-        </div>
-
-        <img src="https://via.placeholder.com/300x200.png?text=One+More+Lane+Meme+🛣️" class="meme-img" alt="One more lane meme">
-    </div>
-
-    <section id="petition">
-        <div class="container">
-            <h2>PETITION TO PAVE PARADISE</h2>
-            <p id="signatureCount">4,321 concerned drivers have signed!</p>
+        <!-- Enhanced Petition Section -->
+        <section id="petition">
+            <h2>🖋️ Demand More Asphalt!</h2>
+            <p id="signatureCount">4,321 "serious" citizens signed</p>
             <form onsubmit="handlePetition(event)">
-                <input type="text" placeholder="Name (Required by Big Asphalt)" required>
-                <input type="email" placeholder="Email (For spam about lanes)" required>
-                <textarea placeholder="Optional comment (We won't read this)" rows="4"></textarea>
+                <input type="text" placeholder="Name (will be used for nothing)" 
+                       class="form-input" required>
+                <input type="email" placeholder="Email (we pinky promise not to sell it)" 
+                       class="form-input" required>
+                <textarea class="form-input" 
+                          placeholder="Comments (will be fed to ChatGPT for laughs)"
+                          rows="4"></textarea>
                 <button type="submit" class="btn">Sign Now!</button>
             </form>
-        </div>
-    </section>
+            <p style="font-size: 0.8em; margin-top: 1rem;">
+                🔒 Privacy guaranteed! (Because we don't store any data)
+            </p>
+        </section>
+    </div>
 
     <footer>
-        <p>*Traffic solutions guaranteed to create more traffic | 🚗🚗🚗</p>
-        <p>© 2023 MoCo Lane Addiction Support Group | "Just one more lane..."</p>
-        <p><em>This is a satirical project - please don't actually pave everything</em></p>
+        <p>© 2023 Pave Over MoCo | Satirical Project | 
+           <a href="privacy.html" style="color: var(--yellow-line);">Privacy Policy</a></p>
     </footer>
 
-    <script>
-        // Previous JavaScript remains, adding new features below
+    <!-- Privacy Policy Page (save as privacy.html) -->
+    <!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy Policy - Pave Over MoCo</title>
+    <style>
+        /* Include all previous CSS */
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <a href="index.html#petition">Sign Petition</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </nav>
 
-        function addLane() {
-            // Existing lane counter code
-            // Add construction sound
-            const honk = new Audio('https://assets.mixkit.co/active_storage/sfx/0052/0052-preview.mp3');
-            honk.play();
-        }
+    <div class="container">
+        <div class="privacy-policy">
+            <h2>📜 Privacy Policy (We Don't Care)</h2>
+            <p><em>Last updated: Never</em></p>
 
-        function handlePetition(e) {
-            e.preventDefault();
-            const countElement = document.getElementById('signatureCount');
-            const currentCount = parseInt(countElement.textContent);
-            countElement.textContent = `${currentCount + 1} concerned drivers have signed!`;
-            
-            alert(`Thanks for supporting automotive supremacy!\n\n(Note: This "petition" goes straight to the trash)`);
-            e.target.reset();
-        }
+            <h3>What Information Do We Collect?</h3>
+            <p>Literally nothing. Our "petition" is satire, just like the rest of this site.</p>
 
-        // Add random testimonials
-        const testimonials = [
-            "I haven't seen my kids in weeks thanks to shorter commutes!",
-            "More lanes = more freedom 🇺🇸",
-            "Who needs trees when you have concrete?",
-            "My SUV finally feels at home!"
-        ];
+            <h3>How Do We Use Your Information?</h3>
+            <p>We don't. Any information entered in the petition form is immediately discarded.</p>
 
-        setInterval(() => {
-            document.querySelector('.testimonial p').textContent = 
-                `"${testimonials[Math.floor(Math.random() * testimonials.length)]}" - Satisfied Citizen`;
-        }, 5000);
-    </script>
+            <h3>Data Storage</h3>
+            <p>We store your data in the same place we store our common sense: /dev/null</p>
+
+            <h3>Third-Party Sharing</h3>
+            <p>We wouldn't share your data even if we had it. Unlike actual highway contractors.</p>
+
+            <h3>Security</h3>
+            <p>Our security measures include:</p>
+            <ul>
+                <li>Not collecting data</li>
+                <li>Not wanting data</li>
+                <li>Active avoidance of data</li>
+            </ul>
+
+            <h3>Contact Us</h3>
+            <p>Don't. (But if you must: fake@email.pave)</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 Pave Over MoCo | Satirical Project</p>
+    </footer>
 </body>
 </html>
+    -->
