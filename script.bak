@@ -23,20 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
             signButton.disabled = true;
             signButton.textContent = "You've already signed!";
             
-            alert("Thank you for supporting road expansion in Montgomery County!");
+            alert("Thanks for signing! One more lane coming right up!");
         }
     });
 
-    // Professional Testimonials
+    // Testimonial Rotator
     const testimonials = [
-        { name: "Michael Stevenson", text: "As a local business owner, I believe road improvements will make commuting more efficient and attract more customers." },
-        { name: "Linda Carter", text: "Traffic congestion has been a growing issue. We need smart infrastructure solutions to keep up with our county’s growth." },
-        { name: "Brian Mitchell", text: "Expanding our highways and arterial roads will benefit both residents and businesses by reducing commute times." },
-        { name: "Jessica Thompson", text: "I support roadway expansion because it will help emergency responders reach their destinations faster." },
-        { name: "Robert Jenkins", text: "Montgomery County is growing, and our infrastructure must grow with it. Road expansion is a necessary investment." },
-        { name: "Emily Wilson", text: "More efficient road networks mean less time stuck in traffic and more time spent with family." },
-        { name: "Steve Walker", text: "Strategic road expansion will allow for better traffic flow and long-term economic benefits." },
-        { name: "Megan Brooks", text: "Improved roads mean safer travel conditions for all. It's time to invest in modern infrastructure." }
         { name: "Michael Stevenson", text: "If we just add ONE MORE LANE, I guarantee traffic will disappear overnight. Trust me, bro." },
         { name: "Linda Carter", text: "I need to drive 0.3 miles to pick up a latte. The bike lanes are in my way. Pave over them now!" },
         { name: "Brian Mitchell", text: "Adding roads never increases traffic, bro. That’s just a myth. More lanes = more freedom!" },
@@ -77,8 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentTestimonial = 0;
     const testimonialName = document.getElementById("testimonialName");
     const testimonialText = document.getElementById("testimonialText");
-//    const prevButton = document.getElementById("prevTestimonial");
-//    const nextButton = document.getElementById("nextTestimonial");
+    const prevButton = document.getElementById("prevTestimonial");
+    const nextButton = document.getElementById("nextTestimonial");
 
     function updateTestimonial(index) {
         testimonialName.classList.add("fade-out");
