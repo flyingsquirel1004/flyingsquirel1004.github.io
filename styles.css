@@ -12,3 +12,8 @@ body {
     border: 2px solid red;
     background-color: #ffe6e6;
 }
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
