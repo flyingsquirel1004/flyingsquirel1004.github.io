@@ -1,1 +1,1 @@
-# flyingsquirel1004.github.io
+This is my new project on Beanstalk.
