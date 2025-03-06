@@ -1,16 +1,168 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
+/* Navbar */
+.navbar {
+    background-color: #007bff !important;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 .jumbotron {
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Highway_Congestion.jpg/800px-Highway_Congestion.jpg') center/cover no-repeat;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Miami_traffic_jam%2C_I-95_North_rush_hour.jpg/799px-Miami_traffic_jam%2C_I-95_North_rush_hour.jpg') center/cover no-repeat;
     color: white;
-    text-shadow: 2px 2px 5px black;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    padding: 100px 20px;
 }
 
+.jumbotron h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.jumbotron p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.jumbotron .btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    border: none;
+    transition: 0.3s;
+}
+
+.jumbotron .btn:hover {
+    background-color: #e64a19;
+}
+
+/* Sections */
+.container {
+    padding: 50px 15px;
+    max-width: 900px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Image Styling */
+.img-fluid {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}
+
+/* Testimonials Section */
 .card {
-    border: 2px solid red;
-    background-color: #ffe6e6;
+    background: #ffffff;
+    border-left: 5px solid #007bff;
+    transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-style: italic;
+    color: #555;
+}
+
+/* Petition Section */
+#petition {
+    background-color: #007bff;
+    color: white;
+    padding: 50px 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#petition h2 {
+    color: white;
+}
+
+#signButton {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #ffeb3b;
+    color: black;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+}
+
+#signButton:hover {
+    background-color: #fdd835;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Fade-out Animation for Testimonials */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .jumbotron {
+        padding: 60px 20px;
+    }
+
+    .jumbotron h1 {
+        font-size: 2rem;
+    }
+
+    .jumbotron p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 30px 15px;
+    }
 }
 
 .fade-out {
