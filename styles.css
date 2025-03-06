@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.jumbotron {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Highway_Congestion.jpg/800px-Highway_Congestion.jpg') center/cover no-repeat;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+
+.card {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
