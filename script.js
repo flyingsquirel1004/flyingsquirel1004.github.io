@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateTestimonial(currentTestimonial);
     }
 
-    nextButton.addEventListener("click", nextTestimonial);
-    prevButton.addEventListener("click", prevTestimonial);
+//    nextButton.addEventListener("click", nextTestimonial);
+//    prevButton.addEventListener("click", prevTestimonial);
     setInterval(nextTestimonial, 5000); // Auto-cycle every 5 seconds
 });
