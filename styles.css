@@ -1,152 +1,1134 @@
-/* General Styles */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+:root {
+    --ink: #111612;
+    --muted: #596159;
+    --paper: #f4f1e9;
+    --paper-bright: #fffdf7;
+    --asphalt: #171c18;
+    --asphalt-soft: #242b26;
+    --orange: #f05a28;
+    --orange-dark: #c83f12;
+    --lime: #d9ff43;
+    --line: rgba(17, 22, 18, 0.14);
+    --white-line: rgba(255, 255, 255, 0.16);
+    --shadow: 0 22px 60px rgba(17, 22, 18, 0.12);
+    --radius: 22px;
+    --max-width: 1180px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1a1a1a; /* 🔹 Dark background */
-    color: #ddd;
     margin: 0;
-    padding: 0;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #007bff !important;
-}
-
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-/* Jumbotron */
-.jumbotron {
-    position: relative;
-    background: url('road-construction.jpg') center/cover no-repeat;
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    padding: 120px 20px;
-    text-align: center;
-}
-
-.jumbotron .overlay {
-    background: rgba(0, 0, 0, 0.6); /* 🔹 Dark overlay for better readability */
-    padding: 40px;
-    border-radius: 10px;
-    display: inline-block;
-}
-
-.jumbotron h1 {
-    font-size: 2.8rem;
-    font-weight: bold;
-    color: #ffcc00; /* 🔹 Eye-catching gold */
-}
-
-.jumbotron p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
-.jumbotron .btn {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    background-color: #ff5722;
-    border: none;
-    transition: 0.3s;
-}
-
-.jumbotron .btn:hover {
-    background-color: #e64a19;
-}
-
-/* Sections */
-.container {
-    padding: 50px 15px;
-    max-width: 900px;
-}
-
-h2 {
-    font-size: 2rem;
-    color: #ffcc00; /* 🔹 Gold for contrast */
-    font-weight: bold;
-    text-align: center;
-}
-
-p {
-    font-size: 1.1rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "DM Sans", Arial, sans-serif;
     line-height: 1.6;
-    color: #ccc;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Image Styling */
-.img-fluid {
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+body::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(rgba(17, 22, 18, 0.09) 0.65px, transparent 0.65px);
+    background-size: 7px 7px;
+    content: "";
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+img {
+    display: block;
     max-width: 100%;
 }
 
-/* Petition Section */
-#petition {
-    background-color: #222;
+a {
+    color: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--lime);
+    outline-offset: 4px;
+}
+
+.skip-link {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--lime);
+    color: var(--ink);
+    font-weight: 700;
+    transform: translateY(-150%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--white-line);
+    background: rgba(23, 28, 24, 0.94);
     color: white;
-    padding: 50px 15px;
-    border-radius: 10px;
-    text-align: center;
+    backdrop-filter: blur(16px);
 }
 
-#petition h2 {
-    color: #ffcc00;
+.nav-wrap,
+.section-inner,
+.footer-inner {
+    width: min(calc(100% - 40px), var(--max-width));
+    margin-inline: auto;
 }
 
-#signButton {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    background-color: #ffcc00;
-    color: black;
-    font-weight: bold;
-    border: none;
-    transition: 0.3s;
+.nav-wrap {
+    display: flex;
+    min-height: 78px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
 }
 
-#signButton:hover {
-    background-color: #ffeb3b;
-}
-
-/* Footer */
-footer {
-    background-color: #111;
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     color: white;
-    padding: 15px 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    font-size: 0.78rem;
+    letter-spacing: -0.05em;
+    transform: rotate(-7deg);
+}
+
+.brand span:last-child {
+    display: grid;
+    line-height: 1.02;
+}
+
+.brand small {
+    color: #aeb7af;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.site-nav a {
+    color: #d8ddd9;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+    color: white;
+}
+
+.site-nav .nav-cta {
+    padding: 11px 18px;
+    border-radius: 999px;
+    background: var(--lime);
+    color: var(--ink);
+}
+
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--white-line);
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.satire-strip {
+    padding: 9px 20px;
+    background: var(--lime);
+    color: var(--ink);
+    font-size: 0.73rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     text-align: center;
+    text-transform: uppercase;
+}
+
+.hero {
+    position: relative;
+    min-height: 720px;
+    overflow: hidden;
+    background: var(--asphalt);
+    color: white;
+}
+
+.hero::before {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(16, 20, 17, 0.98) 0%, rgba(16, 20, 17, 0.82) 48%, rgba(16, 20, 17, 0.2) 100%),
+        url("road-expansion.jpg") center 42% / cover;
+    content: "";
+}
+
+.hero::after {
+    position: absolute;
+    right: 10%;
+    bottom: -140px;
+    width: 7px;
+    height: 520px;
+    background: repeating-linear-gradient(to bottom, var(--lime) 0 34px, transparent 34px 64px);
+    content: "";
+    opacity: 0.8;
+    transform: rotate(17deg);
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-height: 720px;
+    align-content: center;
+    padding-block: 90px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 20px;
+    color: var(--orange);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    width: 28px;
+    height: 3px;
+    background: currentColor;
+    content: "";
+}
+
+.hero h1,
+.page-hero h1 {
+    max-width: 900px;
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(3.5rem, 8.5vw, 7.8rem);
+    font-weight: 700;
+    letter-spacing: -0.075em;
+    line-height: 0.86;
+}
+
+.hero h1 em {
+    color: var(--lime);
+    font-style: normal;
+}
+
+.hero-copy {
+    max-width: 620px;
+    margin: 30px 0 0;
+    color: #d3d8d4;
+    font-size: clamp(1.05rem, 2vw, 1.28rem);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+.button {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--orange);
+    color: white;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.button:hover {
+    background: var(--orange-dark);
+    transform: translateY(-2px);
+}
+
+.button-secondary {
+    border-color: rgba(255, 255, 255, 0.32);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.button-secondary:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.button-dark {
+    background: var(--ink);
+}
+
+.button-dark:hover {
+    background: #303931;
+}
+
+.hero-stamp {
+    position: absolute;
+    right: 4%;
+    bottom: 60px;
+    display: grid;
+    width: 150px;
+    height: 150px;
+    place-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(9deg);
+}
+
+.hero-stamp strong {
+    display: block;
+    color: var(--lime);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.metrics {
+    position: relative;
+    z-index: 2;
+    margin-top: -1px;
+    background: var(--orange);
+    color: white;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.metric {
+    min-height: 145px;
+    padding: 28px;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.metric:last-child {
+    border-right: 0;
+}
+
+.metric-value {
+    display: block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+.metric-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.section {
+    padding-block: 110px;
+}
+
+.section-dark {
+    background: var(--asphalt);
+    color: white;
+}
+
+.section-orange {
+    background: var(--orange);
+    color: white;
+}
+
+.section-heading {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    gap: 70px;
+    align-items: end;
+    margin-bottom: 58px;
+}
+
+.section-heading h2,
+.article h2,
+.petition h2 {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+}
+
+.section-heading p {
+    max-width: 650px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.08rem;
+}
+
+.section-dark .section-heading p {
+    color: #adb6af;
+}
+
+.argument-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.argument-card {
+    position: relative;
+    min-height: 400px;
+    padding: 32px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-bright);
+    box-shadow: 0 4px 0 transparent;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.argument-card:hover {
+    box-shadow: 0 8px 0 var(--ink);
+    transform: translateY(-7px);
+}
+
+.argument-number {
+    display: block;
+    color: var(--orange);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.argument-card h3 {
+    max-width: 270px;
+    margin: 70px 0 16px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2rem;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+}
+
+.argument-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.card-link {
+    position: absolute;
+    right: 30px;
+    bottom: 28px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.card-link::after {
+    color: var(--orange);
+    content: "↗";
+    font-size: 1.4rem;
+}
+
+.manifesto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.manifesto-visual {
+    position: relative;
+}
+
+.manifesto-visual img {
+    width: 100%;
+    min-height: 540px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    filter: grayscale(0.2) contrast(1.05);
+}
+
+.image-note {
+    position: absolute;
+    right: -22px;
+    bottom: 28px;
+    max-width: 210px;
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--lime);
+    color: var(--ink);
+    font-size: 0.76rem;
+    font-weight: 800;
+    line-height: 1.35;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+}
+
+.manifesto-copy h2 {
+    max-width: 550px;
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.8rem, 5.2vw, 5rem);
+    letter-spacing: -0.065em;
+    line-height: 0.94;
+}
+
+.manifesto-copy > p {
+    margin: 28px 0 38px;
+    color: #adb6af;
+    font-size: 1.05rem;
+}
+
+.principle-list {
+    display: grid;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.principle-list li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 14px;
+    padding: 20px 0;
+    border-top: 1px solid var(--white-line);
+}
+
+.principle-list strong {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.1rem;
+}
+
+.principle-list span {
+    color: var(--orange);
+    font-weight: 800;
+}
+
+.quote-stage {
+    position: relative;
+    min-height: 380px;
+    padding: 60px;
+    border: 1px solid var(--white-line);
+    border-radius: var(--radius);
+    background: var(--asphalt-soft);
+}
+
+.quote-mark {
+    color: var(--lime);
+    font-family: Georgia, serif;
+    font-size: 6rem;
+    line-height: 0.5;
+}
+
+.quote-text {
+    max-width: 900px;
+    margin: 32px 0 30px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.quote-text.is-changing {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.quote-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.quote-person {
+    color: #afb7b1;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.quote-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-button {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 1px solid var(--white-line);
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    border-color: var(--lime);
+    color: var(--lime);
+}
+
+.petition {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.petition p {
+    max-width: 640px;
+    margin: 24px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.04rem;
+}
+
+.petition-panel {
+    padding: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius);
+    background: rgba(17, 22, 18, 0.12);
+}
+
+.signature-count {
+    display: block;
+    margin-bottom: 24px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.4rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+.progress-track {
+    height: 8px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.progress-bar {
+    width: 34%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--lime);
+}
+
+.petition-note {
+    display: block;
+    margin-top: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.76rem;
+}
+
+.petition button:disabled {
+    cursor: default;
+    opacity: 0.75;
+    transform: none;
+}
+
+.page-hero {
+    padding: 100px 0 90px;
+    overflow: hidden;
+    background: var(--asphalt);
+    color: white;
+}
+
+.page-hero h1 {
+    max-width: 1050px;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+}
+
+.page-hero p {
+    max-width: 680px;
+    margin: 28px 0 0;
+    color: #bbc3bd;
+    font-size: 1.14rem;
+}
+
+.page-number {
+    color: var(--lime);
+}
+
+.article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 80px;
+    align-items: start;
+}
+
+.article h2 {
+    margin: 70px 0 22px;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.article h2:first-child {
+    margin-top: 0;
+}
+
+.article h3 {
+    margin: 38px 0 12px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.4rem;
+}
+
+.article p,
+.article li {
+    color: #3f4740;
+    font-size: 1.04rem;
+}
+
+.article a:not(.button) {
+    font-weight: 700;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.article-note {
+    margin: 38px 0;
+    padding: 24px 26px;
+    border-left: 5px solid var(--orange);
+    background: #e9e5db;
+}
+
+.article-note strong {
+    display: block;
+    margin-bottom: 6px;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.side-card {
+    position: sticky;
+    top: 110px;
+    padding: 28px;
+    border-radius: var(--radius);
+    background: var(--orange);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.side-card .eyebrow {
+    color: var(--lime);
+}
+
+.side-card h2 {
+    margin: 14px 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 2rem;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.side-card p {
+    margin: 0 0 24px;
+    color: rgba(255, 255, 255, 0.82);
     font-size: 0.9rem;
 }
 
-/* Buttons */
-.btn {
-    transition: all 0.3s ease-in-out;
+.source-list {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
 }
 
-.btn:hover {
-    transform: scale(1.05);
+.source-list a {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-decoration: none;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .jumbotron {
-        padding: 80px 20px;
+.exhibit {
+    margin: 36px 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--asphalt);
+    color: white;
+}
+
+.exhibit img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+}
+
+.exhibit figcaption {
+    padding: 18px 22px;
+    color: #bbc2bd;
+    font-size: 0.78rem;
+}
+
+.privacy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.privacy-card {
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-bright);
+}
+
+.privacy-card h2 {
+    margin: 0 0 14px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.45rem;
+}
+
+.privacy-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.site-footer {
+    padding: 70px 0 28px;
+    background: #0c100d;
+    color: white;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    padding-bottom: 54px;
+}
+
+.footer-title {
+    max-width: 650px;
+    margin: 20px 0 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.7rem);
+    letter-spacing: -0.065em;
+    line-height: 0.95;
+}
+
+.footer-nav {
+    display: grid;
+    gap: 10px;
+    text-align: right;
+}
+
+.footer-nav a {
+    color: #c2c9c3;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--white-line);
+    color: #858f87;
+    font-size: 0.75rem;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
-    .jumbotron h1 {
-        font-size: 2rem;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 
-    .jumbotron p {
-        font-size: 1rem;
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: grid;
+        place-items: center;
     }
 
-    h2 {
-        font-size: 1.8rem;
+    .site-nav {
+        position: absolute;
+        top: 78px;
+        right: 0;
+        left: 0;
+        display: none;
+        padding: 22px 20px 28px;
+        border-top: 1px solid var(--white-line);
+        background: var(--asphalt);
     }
 
-    .container {
-        padding: 30px 15px;
+    .site-nav.is-open {
+        display: grid;
+    }
+
+    .site-nav a {
+        padding: 8px 0;
+    }
+
+    .site-nav .nav-cta {
+        width: fit-content;
+        padding-inline: 18px;
+    }
+
+    .hero,
+    .hero-inner {
+        min-height: 670px;
+    }
+
+    .hero::before {
+        background:
+            linear-gradient(90deg, rgba(16, 20, 17, 0.96), rgba(16, 20, 17, 0.62)),
+            url("road-expansion.jpg") center / cover;
+    }
+
+    .hero-stamp {
+        display: none;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metric:nth-child(2) {
+        border-right: 0;
+    }
+
+    .metric:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .section-heading,
+    .manifesto,
+    .petition,
+    .article-layout {
+        grid-template-columns: 1fr;
+        gap: 42px;
+    }
+
+    .argument-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .argument-card {
+        min-height: 340px;
+    }
+
+    .manifesto-visual {
+        max-width: 680px;
+    }
+
+    .image-note {
+        right: 18px;
+    }
+
+    .side-card {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-wrap,
+    .section-inner,
+    .footer-inner {
+        width: min(calc(100% - 28px), var(--max-width));
+    }
+
+    .brand small {
+        display: none;
+    }
+
+    .satire-strip {
+        font-size: 0.62rem;
+    }
+
+    .hero,
+    .hero-inner {
+        min-height: 620px;
+    }
+
+    .hero-inner {
+        padding-block: 65px;
+    }
+
+    .hero h1 {
+        font-size: clamp(3.2rem, 17vw, 5rem);
+    }
+
+    .hero-actions {
+        display: grid;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .metric {
+        min-height: 120px;
+        padding: 22px 18px;
+    }
+
+    .section {
+        padding-block: 76px;
+    }
+
+    .section-heading {
+        gap: 24px;
+        margin-bottom: 38px;
+    }
+
+    .argument-card {
+        min-height: 365px;
+        padding: 26px;
+    }
+
+    .manifesto {
+        gap: 50px;
+    }
+
+    .manifesto-visual img {
+        min-height: 380px;
+    }
+
+    .image-note {
+        right: 10px;
+        bottom: 14px;
+        max-width: 175px;
+    }
+
+    .quote-stage {
+        min-height: 430px;
+        padding: 34px 26px;
+    }
+
+    .quote-meta {
+        align-items: flex-end;
+    }
+
+    .petition-panel {
+        padding: 28px 22px;
+    }
+
+    .page-hero {
+        padding-block: 70px;
+    }
+
+    .privacy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top,
+    .footer-bottom {
+        display: grid;
+    }
+
+    .footer-nav {
+        text-align: left;
     }
 }
