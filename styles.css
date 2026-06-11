@@ -569,6 +569,55 @@ button:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
+   Further reading cards
+   -------------------------------------------------------------------------- */
+.reading-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.8rem 1.7rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reading-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.reading-tag {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+}
+
+.reading-card h3 {
+    font-size: 1.12rem;
+    margin-bottom: 0.5rem;
+}
+
+.reading-card h3 a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.1rem;
+}
+
+.reading-card h3 a:hover {
+    color: var(--navy);
+}
+
+.reading-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--body);
+}
+
+/* --------------------------------------------------------------------------
    County spotlight (dark)
    -------------------------------------------------------------------------- */
 .spotlight-grid {
@@ -1142,6 +1191,7 @@ button:focus-visible {
     }
 
     .argument-card,
+    .reading-card,
     .button,
     .next-brief a {
         transition: none;
