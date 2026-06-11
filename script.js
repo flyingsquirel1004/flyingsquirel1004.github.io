@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Mobile navigation
     const menuButton = document.querySelector(".menu-toggle");
     const siteNav = document.querySelector(".site-nav");
 
@@ -9,114 +12,124 @@ document.addEventListener("DOMContentLoaded", () => {
             menuButton.textContent = isOpen ? "Close" : "Menu";
         });
 
-        siteNav.addEventListener("click", (event) => {
-            if (event.target.matches("a")) {
+        siteNav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
                 siteNav.classList.remove("is-open");
                 menuButton.setAttribute("aria-expanded", "false");
                 menuButton.textContent = "Menu";
-            }
-        });
-    }
-
-    const year = document.querySelector("[data-current-year]");
-    if (year) {
-        year.textContent = new Date().getFullYear();
-    }
-
-    const revealItems = document.querySelectorAll(".reveal");
-    if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                    observer.unobserve(entry.target);
-                }
             });
-        }, { threshold: 0.12 });
+        });
+    }
 
-        revealItems.forEach((item) => observer.observe(item));
+    // Footer year
+    document.querySelectorAll("[data-current-year]").forEach((node) => {
+        node.textContent = String(new Date().getFullYear());
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window && !prefersReducedMotion) {
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.12 }
+        );
+
+        revealElements.forEach((element) => revealObserver.observe(element));
     } else {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
+        revealElements.forEach((element) => element.classList.add("is-visible"));
     }
 
-    const campaignPrinciples = [
-        {
-            name: "Campaign principle 01 · Accountability",
-            text: "Road capacity is public infrastructure. Removing it should require the same scrutiny as building it."
-        },
-        {
-            name: "Campaign principle 02 · Reliability",
-            text: "Residents should be able to reach work, school, shops, and medical care without unpredictable delays."
-        },
-        {
-            name: "Campaign principle 03 · Transparency",
-            text: "Every lane conversion should publish its expected effect on traffic, access, safety, and maintenance."
-        },
-        {
-            name: "Campaign principle 04 · Fair investment",
-            text: "Transportation funding should follow measurable demand and deliver benefits residents can clearly see."
-        },
-        {
-            name: "Campaign principle 05 · Public voice",
-            text: "Drivers and local businesses deserve a meaningful role before permanent street changes are approved."
+    // Animated statistic counters.
+    // <span data-counter="74" data-prefix="$" data-suffix="B" data-decimals="0">$74B</span>
+    const counters = document.querySelectorAll("[data-counter]");
+
+    const renderCounter = (node, value) => {
+        const decimals = Number(node.dataset.decimals || 0);
+        const prefix = node.dataset.prefix || "";
+        const suffix = node.dataset.suffix || "";
+        node.textContent = `${prefix}${value.toFixed(decimals)}${suffix}`;
+    };
+
+    const animateCounter = (node) => {
+        const target = Number(node.dataset.counter);
+
+        if (!Number.isFinite(target)) {
+            return;
         }
-    ];
 
-    const quote = document.querySelector("[data-quote]");
-    const person = document.querySelector("[data-quote-person]");
-    const previous = document.querySelector("[data-quote-previous]");
-    const next = document.querySelector("[data-quote-next]");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let quoteIndex = 0;
-    let quoteTimer;
+        const duration = 1100;
+        const start = performance.now();
 
-    const updateQuote = (direction = 1) => {
-        if (!quote || !person) return;
-        quoteIndex = (quoteIndex + direction + campaignPrinciples.length) % campaignPrinciples.length;
-        quote.classList.add("is-changing");
-        window.setTimeout(() => {
-            quote.textContent = campaignPrinciples[quoteIndex].text;
-            person.textContent = campaignPrinciples[quoteIndex].name;
-            quote.classList.remove("is-changing");
-        }, 180);
+        const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            renderCounter(node, target * eased);
+
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            }
+        };
+
+        requestAnimationFrame(tick);
     };
 
-    const startQuoteTimer = () => {
-        window.clearInterval(quoteTimer);
-        if (reducedMotion) return;
-        quoteTimer = window.setInterval(() => updateQuote(1), 7000);
-    };
+    if (counters.length > 0) {
+        if ("IntersectionObserver" in window && !prefersReducedMotion) {
+            const counterObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.5 }
+            );
 
-    if (quote && person) {
-        previous?.addEventListener("click", () => {
-            updateQuote(-1);
-            startQuoteTimer();
-        });
-        next?.addEventListener("click", () => {
-            updateQuote(1);
-            startQuoteTimer();
-        });
-        startQuoteTimer();
+            counters.forEach((node) => counterObserver.observe(node));
+        } else {
+            counters.forEach((node) => renderCounter(node, Number(node.dataset.counter) || 0));
+        }
     }
 
-    let hasSigned = localStorage.getItem("hasSigned") === "true";
+    // Pledge button (stored locally only — see privacy.html)
     const signButton = document.querySelector("[data-sign-button]");
 
-    const renderPetition = () => {
-        if (signButton && hasSigned) {
+    if (signButton) {
+        const markSigned = () => {
             signButton.disabled = true;
             signButton.textContent = "Support pledged";
-        }
-    };
+        };
 
-    if (signButton) {
+        let hasSigned = false;
+
+        try {
+            hasSigned = window.localStorage.getItem("hasSigned") === "true";
+        } catch (error) {
+            hasSigned = false;
+        }
+
+        if (hasSigned) {
+            markSigned();
+        }
+
         signButton.addEventListener("click", () => {
-            if (hasSigned) return;
-            hasSigned = true;
-            localStorage.setItem("hasSigned", "true");
-            renderPetition();
+            try {
+                window.localStorage.setItem("hasSigned", "true");
+            } catch (error) {
+                // Storage unavailable (private mode) — still acknowledge the click.
+            }
+
+            markSigned();
         });
     }
-
-    renderPetition();
 });
