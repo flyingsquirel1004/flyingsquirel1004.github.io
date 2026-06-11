@@ -39,26 +39,26 @@ document.addEventListener("DOMContentLoaded", () => {
         revealItems.forEach((item) => item.classList.add("is-visible"));
     }
 
-    const testimonials = [
+    const campaignPrinciples = [
         {
-            name: "Michael Stevenson · Definitely a real corridor expert",
-            text: "If one more lane does not solve congestion, the responsible response is obviously one more lane after that."
+            name: "Campaign principle 01 · Accountability",
+            text: "Road capacity is public infrastructure. Removing it should require the same scrutiny as building it."
         },
         {
-            name: "Linda Carter · Drive-through urbanist",
-            text: "A lane carrying fifty people on one bus could instead carry at least twelve very comfortable SUVs."
+            name: "Campaign principle 02 · Reliability",
+            text: "Residents should be able to reach work, school, shops, and medical care without unpredictable delays."
         },
         {
-            name: "Brian Mitchell · Asphalt futures analyst",
-            text: "The county has tried almost everything except turning the entire county into a county-sized interchange."
+            name: "Campaign principle 03 · Transparency",
+            text: "Every lane conversion should publish its expected effect on traffic, access, safety, and maintenance."
         },
         {
-            name: "Jessica Thompson · Concerned motorist",
-            text: "Every protected bike lane is a beautiful traffic lane being denied the opportunity to reach its full potential."
+            name: "Campaign principle 04 · Fair investment",
+            text: "Transportation funding should follow measurable demand and deliver benefits residents can clearly see."
         },
         {
-            name: "Noah Martin · Lifetime commuter",
-            text: "I have spent years studying congestion through my windshield, often for two hours at a time."
+            name: "Campaign principle 05 · Public voice",
+            text: "Drivers and local businesses deserve a meaningful role before permanent street changes are approved."
         }
     ];
 
@@ -72,11 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateQuote = (direction = 1) => {
         if (!quote || !person) return;
-        quoteIndex = (quoteIndex + direction + testimonials.length) % testimonials.length;
+        quoteIndex = (quoteIndex + direction + campaignPrinciples.length) % campaignPrinciples.length;
         quote.classList.add("is-changing");
         window.setTimeout(() => {
-            quote.textContent = testimonials[quoteIndex].text;
-            person.textContent = testimonials[quoteIndex].name;
+            quote.textContent = campaignPrinciples[quoteIndex].text;
+            person.textContent = campaignPrinciples[quoteIndex].name;
             quote.classList.remove("is-changing");
         }, 180);
     };
@@ -99,33 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
         startQuoteTimer();
     }
 
-    const initialCount = 3423;
-    const storedCount = Number.parseInt(localStorage.getItem("signatureCount"), 10);
-    let signatureCount = Number.isFinite(storedCount) ? storedCount : initialCount;
     let hasSigned = localStorage.getItem("hasSigned") === "true";
-    const signatureElement = document.querySelector("[data-signature-count]");
-    const progressElement = document.querySelector("[data-signature-progress]");
     const signButton = document.querySelector("[data-sign-button]");
 
     const renderPetition = () => {
-        if (signatureElement) {
-            signatureElement.textContent = signatureCount.toLocaleString();
-        }
-        if (progressElement) {
-            progressElement.style.width = `${Math.min((signatureCount / 10000) * 100, 100)}%`;
-        }
         if (signButton && hasSigned) {
             signButton.disabled = true;
-            signButton.textContent = "Signature ceremonially recorded";
+            signButton.textContent = "Support pledged";
         }
     };
 
     if (signButton) {
         signButton.addEventListener("click", () => {
             if (hasSigned) return;
-            signatureCount += 1;
             hasSigned = true;
-            localStorage.setItem("signatureCount", String(signatureCount));
             localStorage.setItem("hasSigned", "true");
             renderPetition();
         });

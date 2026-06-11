@@ -185,7 +185,7 @@ input {
     cursor: pointer;
 }
 
-.satire-strip {
+.advocacy-strip {
     padding: 9px 20px;
     background: var(--lime);
     color: var(--ink);
@@ -1040,7 +1040,7 @@ input {
         display: none;
     }
 
-    .satire-strip {
+    .advocacy-strip {
         font-size: 0.62rem;
     }
 
